@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="yue" id="editormd">
+        <textarea style="display:none;">### Hello Editor.md !</textarea>
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='editor.md/editormd.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var editor = editormd("editormd", {
+                width: "90%",
+                height: 640,
+                syncScrolling : "single",
+                path : "../static/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+            });
+
+            /*
+            // or
+            var editor = editormd({
+                id   : "editormd",
+                path : "../lib/"
+            });
+            */
+        });
+    </script>
+{% endblock %}
