@@ -5,6 +5,7 @@ import os
 
 from flask import Flask
 from flask import render_template
+from flaskext.markdown import Markdown
 
 from config import config
 
@@ -13,6 +14,8 @@ def create_app(config_name):
     app = Flask(config_name)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
+
+    Markdown(app)
 
     _dir = os.path.dirname(os.path.abspath(__file__))
     app.template_folder = os.path.join(_dir, 'templates')
@@ -26,12 +29,17 @@ app = create_app('default')
 
 @app.route("/")
 def resume():
-    return render_template('index.html')
+    with open('resume.md', 'r') as stream:
+        resume = stream.read()
+    read_password = ''
+    return render_template('index.html', resume=resume, password=read_password)
 
 
 @app.route("/admin")
 def admin():
-    return render_template('admin.html')
+    with open('resume.md', 'r') as stream:
+        resume = stream.read()
+    return render_template('admin.html', resume=resume)
 
 
 @app.errorhandler(404)

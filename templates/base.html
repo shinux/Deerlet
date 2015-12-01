@@ -10,6 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='editor.md/css/editormd.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='yue/yue.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" />
@@ -26,6 +27,8 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script src="{{ url_for('static', filename='js/deerlet.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 </body>
 
 </html>

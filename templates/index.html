@@ -1,14 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="resume">
-        <header class="resume-header">
+    <div id="resume_body">
+        <header class="site-head">
             <div class="vertical">
                 <h1 id="drtitle">我是 Title</h1>
                 <p class="subtitle" id="drsubtitle">我是 Sub Title</p>
             </div>
         </header>
-        <div class="resume-content">
+        {% if password %}
+        <div class="content yue">
+            {{ resume|markdown }}
         </div>
+        {% else %}
+        <div class="content passbox" ng-show="resume.show==0">
+            <center>
+                <p>本简历受密码保护，请输入阅读密码后继续</p>
+                <div class="input-group passinput">
+                    <input type="password" class="form-control" name="read_pass" >
+                    <span class="input-group-btn">
+                        <button class="btn btn-default " type="button" onclick="validate_read_pass()">确定</button>
+                    </span>
+                </div><!-- /input-group -->
+            </center>
+        </div>
+        {% endif %}
+    <div class="action-bar hidden-xs">
+        <a href="https://github.com/shnode/Deerlet"><img src="{{ url_for('static', filename='images/home.png') }}" /></a>
+        &nbsp;&nbsp;&nbsp;<a href="#" onclick="makepdf()" title="PDF格式"><img src="{{ url_for('static', filename='images/book.png') }}" /></a>
+        <span ng-show="resume.local!=1">&nbsp;&nbsp;&nbsp;<a href="/admin"><img src="{{ url_for('static', filename='images/cog.png') }}" /></a></span>
+    </div>
     </div>
 {% endblock %}

@@ -67,3 +67,7 @@ body {
 .top a {
     color: white;
 }
+
+.passinput {
+    max-width: 300px;
+}

@@ -10,6 +10,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     """Base Configuration"""
 
+    TITLE = '我是 title'
+    SUB_TITLE = '我是 subtitle'
+    MAX_LENGTH = '10000'
+
     @classmethod
     def init_app(cls, app):
         pass
