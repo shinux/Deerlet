@@ -48,3 +48,22 @@ body {
     font-size: 12px;
     text-align: right;
 }
+
+.top {
+    background: #303538 no-repeat center center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 18px;
+    line-height: 20px;
+    color: white;
+}
+
+.action {
+    text-align: right;
+}
+
+.top a {
+    color: white;
+}
