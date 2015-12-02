@@ -17,7 +17,7 @@ function saveToFile() {
     })
 }
 
-setInterval("saveToFile()", 6000);
+//setInterval("saveToFile()", 6000);
 
 
 function validate_read_pass() {

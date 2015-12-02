@@ -10,6 +10,8 @@ from flask import session
 from flask import request
 from flask import jsonify
 from flaskext.markdown import Markdown
+from markdown import markdown
+import pdfkit
 
 from config import config
 
@@ -96,16 +98,23 @@ def save():
              False: {'success': False, 'code': 0}
     """
     if session.get('admin_password') == current_app.config.get('ADMIN_PASSWORD'):
-        with open('resume.md', 'w') as stream:
-            stream.write(request.json)
-        return jsonify(code=1, success=True)
-    else:
-        return jsonify(code=0, success=False)
+        resume = request.json
+        if resume:
+            with open('resume.md', 'w') as stream:
+                stream.write(resume)
+            return jsonify(code=1, success=True)
+    return jsonify(code=0, success=False)
 
 
 @app.route("/download", methods=['GET'])
 def download():
-    pass
+    input_filename = 'README.md'
+    output_filename = 'README.pdf'
+
+    with open(input_filename, 'r') as f:
+        html_text = markdown(f.read(), output_format='html4')
+
+    pdfkit.from_string(html_text, output_filename)
 
 
 @app.errorhandler(404)

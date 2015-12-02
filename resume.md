@@ -1,5 +1,5 @@
 # 说明
-
+doubi,hehe liaobuqi?>
 这是一个默认的程序员简历模板。点击右上方的「 ![cog](http://cvbox.sinaapp.com/client/image/cog.png)  」图标可进入编辑状态。
 
 本简历模板由国内首家互联网人才拍卖网站「 [JobDeer.com](http://www.jobdeer.com) 」提供。请根据自己的实际情况、以及提示信息对模板进行修改、添加和删除。点右上角 「 ![book](http://cvbox.sinaapp.com/client/image/book.png) 」可以下载PDF版本 。
