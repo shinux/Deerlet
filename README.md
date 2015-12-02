@@ -37,7 +37,7 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
 
 克隆 Deerlet:
 
-    git clone git@github.com:shnode/Deerlet.git && cd Deerlet && mkdir logs && cd static && git clone https://github.com/pandao/editor.md.git
+    git clone git@github.com:shnode/Deerlet.git && cd Deerlet/static && git clone https://github.com/pandao/editor.md.git
 
 安装第三方包（最好在virtualenv中）：
 
