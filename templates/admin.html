@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+    {% if admin_validated %}
     <div class="yue" id="editormd">
         <textarea style="display:none;">{{ resume }}</textarea>
     </div>
@@ -32,4 +33,17 @@
             */
         });
     </script>
+    {% else %}
+        <div class="content passbox">
+            <center>
+                <p>本简历受密码保护，请输入管理密码后继续</p>
+                <div class="input-group passinput">
+                    <input type="password" class="form-control" name="admin_password">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default " type="button" onclick="validate_admin_pass()">确定</button>
+                    </span>
+                </div><!-- /input-group -->
+            </center>
+        </div>
+    {% endif %}
 {% endblock %}
