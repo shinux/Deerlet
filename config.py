@@ -11,10 +11,9 @@ class Config(object):
 
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'deerletisawesome'  # Modify your SECRET KEY 建议足够复杂
 
-    TITLE = '我是 title'  # 简历标题
-    SUB_TITLE = '我是 subtitle'  # 简历子标题
-    MAX_LENGTH = '10000'  # 简历字数限制
-    READ_PASSWORD = '12345'  # 简历浏览密码
+    TITLE = 'Deerlet'  # 简历标题，例：马云的简历
+    SUB_TITLE = '基于 Python 的开源简历模板'  # 简历子标题，一句话介绍自己，例：好的东西往往都是很难描述的。
+    READ_PASSWORD = '1234'  # 简历浏览密码
     ADMIN_PASSWORD = 'abcd'  # 简历管理密码
     BASE_DIR = basedir
     UPLOAD_FOLDER = basedir
