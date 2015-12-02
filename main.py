@@ -180,7 +180,6 @@ def download():
 
     </html>
     """
-    print(output)
     pdfkit.from_string(output, output_filename, options=current_app.config.get('PDF_OPTIONS'),)
 
     return send_from_directory(current_app.config.get('UPLOAD_FOLDER'),
