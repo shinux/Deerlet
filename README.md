@@ -25,7 +25,7 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
 
 - 后端基于：[Flask](https://github.com/mitsuhiko/flask),   [Flask-Markdown](https://github.com/dcolish/flask-markdown)
 - 前端基于：[yue.css](https://github.com/lepture/yue.css),   [editor.md](https://github.com/pandao/editor.md)
-- pdf打印服务基于：[pdfkit](https://github.com/JazzCore/python-pdfkit),   [wkhtmltopd](fhttp://wkhtmltopdf.org/)
+- pdf打印服务基于：[pdfkit](https://github.com/JazzCore/python-pdfkit),   [wkhtmltopdf](http://wkhtmltopdf.org/)
 
 (resume.md 的基本模板仅作为参考)
 
