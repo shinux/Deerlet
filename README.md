@@ -21,11 +21,11 @@ var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
 
 Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf 服务（无水印：），密码写死在后台配置文件并在 session 中保存和验证，不需要任何数据库。
 
-[DEMO | 在线预览]() (阅读密码： 1234, 管理密码: abcd）
+[DEMO | 在线预览](http://sinux.cc) (阅读密码： 1234, 管理密码: abcd）
 
-- 后端基于：[Flask](https://github.com/mitsuhiko/flask), [Flask-Markdown](https://github.com/dcolish/flask-markdown)
-- 前端基于：[yue.css](https://github.com/lepture/yue.css), [editor.md](https://github.com/pandao/editor.md)
-- pdf打印服务基于：[pdfkit](https://github.com/JazzCore/python-pdfkit)，[wkhtmltopd](fhttp://wkhtmltopdf.org/)
+- 后端基于：[Flask](https://github.com/mitsuhiko/flask),   [Flask-Markdown](https://github.com/dcolish/flask-markdown)
+- 前端基于：[yue.css](https://github.com/lepture/yue.css),   [editor.md](https://github.com/pandao/editor.md)
+- pdf打印服务基于：[pdfkit](https://github.com/JazzCore/python-pdfkit),   [wkhtmltopd](fhttp://wkhtmltopdf.org/)
 
 (resume.md 的基本模板仅作为参考)
 
@@ -38,7 +38,7 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
 克隆 Deerlet:
 
     git clone git@github.com:shnode/Deerlet.git && cd Deerlet
-    
+
 安装第三方包（最好在virtualenv中）：
 
     pip install -r requirements.txt
@@ -48,15 +48,15 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
     osx/windows : 在 [http://wkhtmltopdf.org/downloads.html](http://wkhtmltopdf.org/downloads.html) 下载的对应版本并安装。
 
     DEB 系 linux: sudo apt-get install wkhtmltopdf
-    
+
     其余 linux 查询相关包管理或去 [http://wkhtmltopdf.org/downloads.html](http://wkhtmltopdf.org/downloads.html) 下载.
-    
+
 运行：
 
     Python3 main.py
-    
+
     open "http://127.0.0.1:5000" # 访问 http://127.0.0.1:5000
-    
+
 ### 配置
 
 建议在使用之前，进行配置。配置集中在 Deerlet 的项目根目录下的 config.py 中：
@@ -80,13 +80,13 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
         'encoding': "UTF-8",
         'no-outline': None
     }  # PDF 设置
-    
+
 在线编辑模式下，每 6 秒自动保存一次当前的文本（全文保存），如果你想修改这个数值，在 `admin.html` 的第 35 行进行修改：
 
     setInterval("saveToFile()", 6000);  // 修改自动保存的时间
-    
+
 一切简历数据（除了标题）保存在 `resume.md` 中，如果喜欢，你也可以离线编辑，并且 copy 到任何地方。
-    
+
 ### License
 
 **GPLv2**
