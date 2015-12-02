@@ -2,7 +2,7 @@
 
 [DeerResume](https://github.com/geekcompany/DeerResume) 是国内很火的一个“开源”简历模板。
 
-DeerResume 的一切数据都保存在 http://cvbox.sinaapp.com/ 这个 sae 的云端，是的，并且在 `app.js` 中：
+DeerResume 的前端很漂亮，但是一切数据都保存在 http://cvbox.sinaapp.com/ 这个 sae 的云端，是的，并且在 `app.js` 中：
 
 ```js
 var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
@@ -37,7 +37,7 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
 
 克隆 Deerlet:
 
-    git clone git@github.com:shnode/Deerlet.git && cd Deerlet
+    git clone git@github.com:shnode/Deerlet.git && cd Deerlet && mkdir logs
 
 安装第三方包（最好在virtualenv中）：
 
