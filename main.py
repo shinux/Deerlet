@@ -96,7 +96,8 @@ def save():
              False: {'success': False, 'code': 0}
     """
     if session.get('admin_password') == current_app.config.get('ADMIN_PASSWORD'):
-        print(request.json)
+        with open('resume.md', 'w') as stream:
+            stream.write(request.json)
         return jsonify(code=1, success=True)
     else:
         return jsonify(code=0, success=False)

@@ -1,13 +1,6 @@
 
-//$(".editormd-markdown-textarea").autoSave(function() {
-//    //var time = new Date().getTime();
-//    //$("#msg").text("Draft Autosaved " + time);
-//    console.log('doubi');
-//}, 500);
-
-
 function saveToFile() {
-    var resume = $('.editormd-markdown-textarea')[0].value;
+    var resume = $('.editormd-markdown-textarea').val();
     $.ajax({
         url: "/save",
         type: 'PUT',
@@ -24,26 +17,8 @@ function saveToFile() {
     })
 }
 
-//var autosaveOn = false;
-//
-//function myAutosavedTextbox_onTextChanged()
-//{
-//    if (!autosaveOn)
-//    {
-//        autosaveOn = true;
-//
-//        $('textarea').eq(0).everyTime("300000", function(){
-//             $.ajax({
-//                 type: "POST",
-//                 url: "/save",
-//                 data: JSON.stringify("id=1", null, '\t'),
-//                 success: function(msg) {
-//                     $('#autosavenotify').text(msg);
-//                 }
-//             });
-//        }); //closing tag
-//    }
-//}
+setInterval("saveToFile()", 6000);
+
 
 function validate_read_pass() {
     var readPassword = $("input[name='read_password']")[0].value;
