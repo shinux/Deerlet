@@ -9,6 +9,7 @@ from flask import current_app
 from flask import session
 from flask import request
 from flask import jsonify
+from flask import send_from_directory
 from flaskext.markdown import Markdown
 from markdown import markdown
 import pdfkit
@@ -108,13 +109,80 @@ def save():
 
 @app.route("/download", methods=['GET'])
 def download():
-    input_filename = 'README.md'
-    output_filename = 'README.pdf'
+    input_filename = 'resume.md'
+    output_filename = 'resume.pdf'
 
-    with open(input_filename, 'r') as f:
-        html_text = markdown(f.read(), output_format='html4')
+    output = """<!DOCTYPE html>
+    <html lang="en">
 
-    pdfkit.from_string(html_text, output_filename)
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+    """
+    with open(current_app.static_folder + '/yue/yue.css', 'r') as yue:
+        output += yue.read()
+    output += """
+        body {
+        height: 100%;
+        max-height: 100%;
+        font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",Georgia,tahoma,arial,simsun,"宋体";
+        color: #3A4145;
+    }
+        .site-head {
+        position: relative;
+        display: table;
+        width: 100%;
+        height: 300px;
+        margin-bottom: 5rem;
+        text-align: center;
+        color: #fff;
+        background: #303538 no-repeat center center;
+        background-size: cover;
+    }
+
+    .site-head h1 {
+        font-size: 36px;
+        line-height: 40px;
+    }
+
+    .site-head .subtitle {
+        font-size: 24px;
+    }
+
+    .vertical {
+        display: table-cell;
+        vertical-align: middle;
+    }
+        </style>
+    </head>
+
+    <body>
+        <header class="site-head">
+            <div class="vertical">
+                <h1 id="drtitle">"""
+    output += current_app.config.get('TITLE')
+
+    output += """</h1>
+                <p class="subtitle" id="drsubtitle">"""
+    output += current_app.config.get('SUB_TITLE')
+    output += """</p>
+            </div>
+        </header>
+    <div class="content yue">
+    """
+
+    with open(input_filename, 'r') as stream:
+        html_text = markdown(stream.read(), output_format='html4')
+    output += html_text
+    output += """</div></body>
+
+    </html>
+    """
+    print(output)
+    pdfkit.from_string(output, output_filename, options=current_app.config.get('PDF_OPTIONS'),)
+
+    return send_from_directory(current_app.config.get('UPLOAD_FOLDER'),
+                               'resume.pdf', as_attachment=True)
 
 
 @app.errorhandler(404)

@@ -3,7 +3,6 @@
 
 import os
 
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -17,6 +16,18 @@ class Config(object):
     MAX_LENGTH = '10000'  # 简历字数限制
     READ_PASSWORD = '12345'  # 简历浏览密码
     ADMIN_PASSWORD = 'abcd'  # 简历管理密码
+    BASE_DIR = basedir
+    UPLOAD_FOLDER = basedir
+
+    PDF_OPTIONS = {
+        'page-size': 'Letter',
+        'margin-top': '0.75in',
+        'margin-right': '0.75in',
+        'margin-bottom': '0.75in',
+        'margin-left': '0.75in',
+        'encoding': "UTF-8",
+        'no-outline': None
+    }
 
     @classmethod
     def init_app(cls, app):
