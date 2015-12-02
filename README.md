@@ -1,1 +1,3 @@
 ### Deerlet
+
+install wkhtmltopdf

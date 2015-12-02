@@ -87,6 +87,26 @@ def validate_admin():
         return jsonify(code=1, success=True)
 
 
+@app.route("/save", methods=['PUT'])
+def save():
+    """
+    auto save resume into resume.md
+    :return: restful suppose we return full content, but i don't want to do this
+             True：{'success': True, 'code': 1}
+             False: {'success': False, 'code': 0}
+    """
+    if session.get('admin_password') == current_app.config.get('ADMIN_PASSWORD'):
+        print(request.json)
+        return jsonify(code=1, success=True)
+    else:
+        return jsonify(code=0, success=False)
+
+
+@app.route("/download", methods=['GET'])
+def download():
+    pass
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
