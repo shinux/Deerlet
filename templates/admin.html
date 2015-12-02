@@ -32,7 +32,9 @@
             });
             */
         });
-        setInterval("saveToFile()", 6000);
+        window.onload=function(){
+            setInterval("saveToFile()", 6000);
+        }
     </script>
     {% else %}
         <div class="content passbox">

@@ -43,7 +43,9 @@ def resume():
     else:
         validated = False
         current_resume = ''
-    return render_template('index.html', resume=current_resume, validated=validated)
+    title = current_app.config.get('TITLE')
+    sub_title = current_app.config.get('SUB_TITLE')
+    return render_template('index.html', resume=current_resume, validated=validated, title=title, sub_title=sub_title)
 
 
 @app.route("/admin")
