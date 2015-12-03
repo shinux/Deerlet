@@ -2,7 +2,7 @@
 
 [DeerResume](https://github.com/geekcompany/DeerResume) 是国内很火的一个“开源”简历模板。
 
-DeerResume 的前端很漂亮，但是一切数据都保存在 http://cvbox.sinaapp.com/ 这个 sae 的云端，是的，并且在 `app.js` 中：
+DeerResume 的前端很漂亮，但它远远称不上作者所说的“DeerResume作为一个开源软件”。因为简历一切数据都保存在 http://cvbox.sinaapp.com/ 这个 sae 的云端，是的，并且在 `app.js` 中：
 
 ```js
 var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
@@ -11,15 +11,15 @@ var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
 
 我们不去猜测这么多保存在云端的简历会被拿去做什么，但是这个本地的 data.php 基本上没什么用处，在离线的情况下（本地调试)，我甚至不能编辑，修改和查看我自己的简历, 因为它根本就不存在。
 
-而打印服务，也是放在远端，依赖一个 http://pdf.ftqq.com/ 的 pdf.js 展示，并提供下载服务，是的。
+而打印服务，也是放在作者的远端，依赖一个 http://pdf.ftqq.com/ 的链接，并提供下载服务。
 
-如果你用这个服务下载了 pdf ，那么这个文件的底端还有水印。
+如果你用这个服务下载了 pdf 文件，那么这个文件的底端还有水印。
 
 这些理由已经足够让我不去使用它了，更不要说阅读密码和管理密码的传输方式，参见 [issue](https://github.com/geekcompany/DeerResume/issues/12)
 
 ### Deerlet
 
-Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf 服务（无水印：），密码写死在后台配置文件并在 session 中保存和验证，不需要任何数据库。
+Deerlet 是一个开源在线简历模板，提供在线展示，在线编辑，下载 pdf 服务（无水印：），密码写死在后台配置文件并在 session 中保存和验证，不需要任何数据库。
 
 [DEMO | 在线预览](http://sinux.cc) (阅读密码： 1234, 管理密码: abcd）
 
@@ -31,7 +31,7 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
 
 ### 下载及部署
 
-(由于淘汰 Python2 人人有责，所以 Deerlet 只支持 Python3 )
+( Deerlet 只支持 Python3 )
 
 依赖 Python3 环境。
 
@@ -45,11 +45,18 @@ Deerlet 是一个在线简历模板，提供在线展示，编辑，打印 pdf �
 
 安装 pdf 打印服务的依赖 `wkhtmltopdf`:
 
-    osx/windows : 在 [http://wkhtmltopdf.org/downloads.html](http://wkhtmltopdf.org/downloads.html) 下载的对应版本并安装。
+    osx/windows : 在 http://wkhtmltopdf.org/downloads.html 下载的对应版本并安装。
 
     DEB 系 linux: sudo apt-get install wkhtmltopdf
 
-    其余 linux 查询相关包管理或去 [http://wkhtmltopdf.org/downloads.html](http://wkhtmltopdf.org/downloads.html) 下载.
+    其余 linux 查询相关包管理或去 http://wkhtmltopdf.org/downloads.html 下载.
+
+如果下载之后仍然报错，请尝试重新编译 QT 和 wkhtmltopdf，参见： [链接](http://www.grobak.net/id/blog/how-fix-wkhtmltopdf-failed-error-code-6)
+
+由于服务器中文字体不全的问题，请下载字体并更新缓存：
+
+    sudo apt-get install fonts-wqy-microhei ttf-wqy-microhei fonts-wqy-zenhei ttf-wqy-zenhei
+    fc-cache -f -v
 
 运行：
 

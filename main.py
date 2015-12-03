@@ -115,10 +115,10 @@ def download():
     output_filename = 'resume.pdf'
 
     output = """<!DOCTYPE html>
-    <html lang="en">
+    <html lang="zh-cmn-Hans">
 
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <style type="text/css">
     """
     with open(current_app.static_folder + '/yue/yue.css', 'r') as yue:
