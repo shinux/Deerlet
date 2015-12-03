@@ -13,7 +13,7 @@ class Config(object):
 
     TITLE = 'Deerlet'  # 简历标题，例：马云的简历
     SUB_TITLE = '基于 Python 的开源简历模板'  # 简历子标题，一句话介绍自己，例：好的东西往往都是很难描述的。
-    READ_PASSWORD = '1234'  # 简历浏览密码
+    READ_PASSWORD = ''  # 简历浏览密码
     ADMIN_PASSWORD = 'abcd'  # 简历管理密码
     BASE_DIR = basedir
     UPLOAD_FOLDER = basedir

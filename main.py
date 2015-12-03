@@ -31,12 +31,17 @@ def create_app(config_name):
     return app
 
 
+# create app
 app = create_app('default')
+# try to load the css files
+with open(app.static_folder + '/yue/yue.css', 'r') as yue:
+    yue_css = yue.read()
 
 
 @app.route("/")
 def resume():
-    if session.get('read_password') == current_app.config.get('READ_PASSWORD'):
+    rerad_password = current_app.config.get('READ_PASSWORD')
+    if not rerad_password or session.get('read_password') == rerad_password:
         validated = True
         with open('resume.md', 'r') as stream:
             current_resume = stream.read()
@@ -114,72 +119,16 @@ def download():
     input_filename = 'resume.md'
     output_filename = 'resume.pdf'
 
-    output = """<!DOCTYPE html>
-    <html lang="zh-cmn-Hans">
-
-    <head>
-        <meta charset="UTF-8">
-        <style type="text/css">
-    """
-    with open(current_app.static_folder + '/yue/yue.css', 'r') as yue:
-        output += yue.read()
-    output += """
-        body {
-        height: 100%;
-        max-height: 100%;
-        font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",Georgia,tahoma,arial,simsun,"宋体";
-        color: #3A4145;
-    }
-        .site-head {
-        position: relative;
-        display: table;
-        width: 100%;
-        height: 300px;
-        margin-bottom: 5rem;
-        text-align: center;
-        color: #fff;
-        background: #303538 no-repeat center center;
-        background-size: cover;
-    }
-
-    .site-head h1 {
-        font-size: 36px;
-        line-height: 40px;
-    }
-
-    .site-head .subtitle {
-        font-size: 24px;
-    }
-
-    .vertical {
-        display: table-cell;
-        vertical-align: middle;
-    }
-        </style>
-    </head>
-
-    <body>
-        <header class="site-head">
-            <div class="vertical">
-                <h1 id="drtitle">"""
-    output += current_app.config.get('TITLE')
-
-    output += """</h1>
-                <p class="subtitle" id="drsubtitle">"""
-    output += current_app.config.get('SUB_TITLE')
-    output += """</p>
-            </div>
-        </header>
-    <div class="content yue">
-    """
-
     with open(input_filename, 'r') as stream:
         html_text = markdown(stream.read(), output_format='html4')
-    output += html_text
-    output += """</div></body>
+    # render the html template
+    output = render_template('pdf_template.html', yue_css=yue_css,
+                                title=current_app.config.get('TITLE'),
+                                sub_title=current_app.config.get('SUB_TITLE'),
+                                content=html_text)
+    print(output)
 
-    </html>
-    """
+    # generate pdf file
     pdfkit.from_string(output, output_filename, options=current_app.config.get('PDF_OPTIONS'),)
 
     return send_from_directory(current_app.config.get('UPLOAD_FOLDER'),
