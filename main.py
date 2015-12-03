@@ -126,7 +126,6 @@ def download():
                                 title=current_app.config.get('TITLE'),
                                 sub_title=current_app.config.get('SUB_TITLE'),
                                 content=html_text)
-    print(output)
 
     # generate pdf file
     pdfkit.from_string(output, output_filename, options=current_app.config.get('PDF_OPTIONS'),)
