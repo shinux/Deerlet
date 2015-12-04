@@ -43,15 +43,15 @@ Deerlet 是一个开源在线简历模板，提供在线展示，在线编辑，
 
     pip install -r requirements.txt
 
-**安装 pdf 打印服务的依赖 `wkhtmltopdf` **.
+**安装 pdf 打印服务的依赖 `wkhtmltopdf`**.
 
 OS X/Windows:
 
-    OS X/Windows : 在 http://wkhtmltopdf.org/downloads.html 下载的对应版本并安装。
+    在 http://wkhtmltopdf.org/downloads.html 下载的对应版本并安装。
 
 Linux:
 
-    DEB 系 linux: sudo apt-get install wkhtmltopdf
+    DEB 系: sudo apt-get install wkhtmltopdf
 
     其余 linux 查询相关包管理或去 http://wkhtmltopdf.org/downloads.html 下载.
 
