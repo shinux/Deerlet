@@ -10,6 +10,8 @@ from flask import session
 from flask import request
 from flask import jsonify
 from flask import send_from_directory
+from flask import redirect
+from flask import url_for
 from flaskext.markdown import Markdown
 from markdown import markdown
 import pdfkit
@@ -40,8 +42,8 @@ with open(app.static_folder + '/yue/yue.css', 'r') as yue:
 
 @app.route("/")
 def resume():
-    rerad_password = current_app.config.get('READ_PASSWORD')
-    if not rerad_password or session.get('read_password') == rerad_password:
+    read_password = current_app.config.get('READ_PASSWORD')
+    if not read_password or session.get('read_password') == read_password:
         validated = True
         with open('resume.md', 'r') as stream:
             current_resume = stream.read()
@@ -55,7 +57,8 @@ def resume():
 
 @app.route("/admin")
 def admin():
-    if session.get('admin_password') == current_app.config.get('ADMIN_PASSWORD'):
+    admin_password = current_app.config.get('ADMIN_PASSWORD')
+    if not admin_password or session.get('admin_password') == admin_password:
         admin_validated = True
         with open('resume.md', 'r') as stream:
             current_resume = stream.read()
@@ -106,32 +109,36 @@ def save():
              False: {'success': False, 'code': 0}
     """
     if session.get('admin_password') == current_app.config.get('ADMIN_PASSWORD'):
-        resume = request.json
-        if resume:
+        _resume = request.json
+        if _resume:
             with open('resume.md', 'w') as stream:
-                stream.write(resume)
+                stream.write(_resume)
             return jsonify(code=1, success=True)
     return jsonify(code=0, success=False)
 
 
 @app.route("/download", methods=['GET'])
 def download():
-    input_filename = 'resume.md'
-    output_filename = 'resume.pdf'
+    read_password = current_app.config.get('READ_PASSWORD')
+    if not read_password or session.get('read_password') == read_password:
+        input_filename = 'resume.md'
+        output_filename = 'resume.pdf'
 
-    with open(input_filename, 'r') as stream:
-        html_text = markdown(stream.read(), output_format='html4')
-    # render the html template
-    output = render_template('pdf_template.html', yue_css=yue_css,
-                                title=current_app.config.get('TITLE'),
-                                sub_title=current_app.config.get('SUB_TITLE'),
-                                content=html_text)
+        with open(input_filename, 'r') as stream:
+            html_text = markdown(stream.read(), output_format='html4')
+        # render the html template
+        output = render_template('pdf_template.html', yue_css=yue_css,
+                                 title=current_app.config.get('TITLE'),
+                                 sub_title=current_app.config.get('SUB_TITLE'),
+                                 content=html_text)
 
-    # generate pdf file
-    pdfkit.from_string(output, output_filename, options=current_app.config.get('PDF_OPTIONS'),)
+        # generate pdf file
+        pdfkit.from_string(output, output_filename, options=current_app.config.get('PDF_OPTIONS'), )
 
-    return send_from_directory(current_app.config.get('UPLOAD_FOLDER'),
-                               'resume.pdf', as_attachment=True)
+        return send_from_directory(current_app.config.get('UPLOAD_FOLDER'),
+                                   'resume.pdf', as_attachment=True)
+    else:
+        return redirect(url_for("resume"))
 
 
 @app.errorhandler(404)
