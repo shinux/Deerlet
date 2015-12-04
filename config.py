@@ -40,13 +40,6 @@ class ModifiedConfig(Config):
     def init_app(cls, app):
         Config.init_app(app)
 
-        import logging
-        from logging import FileHandler
-
-        syslog_handler = FileHandler(os.path.join(basedir, 'logs/deerlet.log'))
-        syslog_handler.setLevel(logging.DEBUG)
-        app.logger.addHandler(syslog_handler)
-
 
 config = {
     'modified': ModifiedConfig,

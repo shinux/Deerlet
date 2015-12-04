@@ -61,3 +61,6 @@ target/
 
 # mac file
 .DS_Store
+
+# resume file
+resume.pdf
