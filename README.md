@@ -35,30 +35,35 @@ Deerlet 是一个开源在线简历模板，提供在线展示，在线编辑，
 
 依赖 Python3 环境。
 
-克隆 Deerlet:
+**Clone Deerlet**:
 
     git clone git@github.com:shnode/Deerlet.git && cd Deerlet/static && git clone https://github.com/pandao/editor.md.git
 
-安装第三方包（最好在virtualenv中）：
+**安装第三方包（最好在virtualenv中）**：
 
     pip install -r requirements.txt
 
-安装 pdf 打印服务的依赖 `wkhtmltopdf`:
+**安装 pdf 打印服务的依赖 `wkhtmltopdf` **.
 
-    osx/windows : 在 http://wkhtmltopdf.org/downloads.html 下载的对应版本并安装。
+OS X/Windows:
+
+    OS X/Windows : 在 http://wkhtmltopdf.org/downloads.html 下载的对应版本并安装。
+
+Linux:
 
     DEB 系 linux: sudo apt-get install wkhtmltopdf
 
     其余 linux 查询相关包管理或去 http://wkhtmltopdf.org/downloads.html 下载.
 
-如果下载之后仍然报错，请尝试重新编译 QT 和 wkhtmltopdf，参见： [链接](http://www.grobak.net/id/blog/how-fix-wkhtmltopdf-failed-error-code-6)
+    如果下载之后仍然报错，请尝试重新编译 QT 和 wkhtmltopdf，参见： [链接](http://www.grobak.net/id/blog/how-fix-wkhtmltopdf-failed-error-code-6)
 
-由于服务器中文字体不全的问题，请下载字体并更新缓存：
+    由于服务器中文字体不全的问题，请下载字体并更新缓存：
 
     sudo apt-get install fonts-wqy-microhei ttf-wqy-microhei fonts-wqy-zenhei ttf-wqy-zenhei
+
     fc-cache -f -v
 
-运行：
+**运行**：
 
     Python3 main.py
 
